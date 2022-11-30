@@ -99,6 +99,22 @@ denik_articles = denik.get_articles("box-article")
 denik.create_article_objects(denik_articles)
 
 
-for ind, art in enumerate(all_articles, 1):
-    print(str(ind) + " " + art.text)
-    print(art.href)
+"""
+VIEWS
+"""
+
+
+def index(request):
+    """ Renders articles based on what user inputs into searchbar. Views all articles if submitted searchbar value is empty """
+
+    articles = []
+    if request.method == "POST":
+        for art in all_articles:
+            if request.POST["keyword"] == "":
+                articles = all_articles
+            elif request.POST["keyword"].lower() in art.text.lower():
+                articles.append(art)
+
+    return render(request, "webscraping/index.html", {
+        "articles": articles
+    })

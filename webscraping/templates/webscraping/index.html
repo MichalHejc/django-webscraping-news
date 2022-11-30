@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'webscraping/styles.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <title>Webscraper</title>
+</head>
+<body>
+  <header>
+    <h1>WEBSCRAPING app</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="keyword" id="search-box">
+        <input type="submit" name="" value="Hledat" id="search-submit">
+    </form>
+    
+  </header>
+  <section class="container">
+        {% for i in articles %}
+        <div class="article-box">
+            <h2>{{ forloop.counter }}.</h2>
+            <a href="{{ i.href }}" title="{{ i.href }}"><p>{{ i.text }}</p></a>
+        </div>
+        {% endfor %}
+  </section>
+
+</body>
+</html>
