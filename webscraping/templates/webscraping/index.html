@@ -18,7 +18,7 @@
 
     <form action="" method="post">
         {% csrf_token %}
-        <input type="text" name="keyword" id="search-box">
+        <input type="text" name="keyword" id="search-box" value="{{ request.POST.keyword }}">
         <input type="submit" name="" value="Hledat" id="search-submit">
     </form>
     

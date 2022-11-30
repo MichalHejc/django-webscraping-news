@@ -75,7 +75,7 @@ class PortalDenik(Portal):
         
         for article in article_list:
             text = article.h3.text.strip()
-            href = self.homepage + article.a.get("href")
+            href = "https://www.denik.cz/" + article.a.get("href")
             new_article = Article(text, href, self.name)
             all_articles.append(new_article)
 
@@ -88,11 +88,11 @@ idnes = Portal("https://www.idnes.cz/zpravy", "idnes.cz")
 idnes_articles = idnes.get_articles("art-link")
 idnes.create_article_objects(idnes_articles)
 
-aktualne = PortalAktualne("https://zpravy.aktualne.cz/", "aktualne.cz")
+aktualne = PortalAktualne("https://zpravy.aktualne.cz", "aktualne.cz")
 aktualne_articles = aktualne.get_articles("section-opener", "small-box")
 aktualne.create_article_objects(aktualne_articles)
 
-aktualne_second_page = PortalAktualne("https://zpravy.aktualne.cz/?offset=20/", "aktualne.cz")
+aktualne_second_page = PortalAktualne("https://zpravy.aktualne.cz/?offset=20", "aktualne.cz")
 aktualne_articles = aktualne.get_articles("section-opener", "small-box")
 aktualne.create_article_objects(aktualne_articles)
 
