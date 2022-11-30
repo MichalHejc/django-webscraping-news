@@ -10,16 +10,18 @@ all_articles = []
 class Article:
     """ Signle article object, with title text and hypertext reference """
 
-    def __init__(self, text, href):
+    def __init__(self, text, href, origin):
         self.text = text
         self.href = href
+        self.origin = origin
 
 
 class Portal:
     """ Class for an article creation from specific news website """
 
-    def __init__(self, homepage):
+    def __init__(self, homepage, name):
         self.homepage = homepage
+        self.name = name
 
     def get_response(self):
         response = requests.get(self.homepage).text
@@ -41,7 +43,7 @@ class Portal:
         for article in article_list:
             text = article.getText().strip()
             href = article.get("href")
-            new_article = Article(text, href)
+            new_article = Article(text, href, self.name)
             all_articles.append(new_article)
 
 
@@ -61,7 +63,7 @@ class PortalAktualne(Portal):
         for article in article_list:
             text = article.get("data-ga4-title")
             href = self.homepage + article.a.get("href")
-            new_article = Article(text, href)
+            new_article = Article(text, href, self.name)
             all_articles.append(new_article)
 
 
@@ -74,27 +76,27 @@ class PortalDenik(Portal):
         for article in article_list:
             text = article.h3.text.strip()
             href = self.homepage + article.a.get("href")
-            new_article = Article(text, href)
+            new_article = Article(text, href, self.name)
             all_articles.append(new_article)
 
 
-seznam = Portal("https://www.seznam.cz/")
+seznam = Portal("https://www.seznam.cz/", "seznam.cz")
 seznam_articles = seznam.get_articles("article__title")
 seznam.create_article_objects(seznam_articles)
 
-idnes = Portal("https://www.idnes.cz/zpravy")
+idnes = Portal("https://www.idnes.cz/zpravy", "idnes.cz")
 idnes_articles = idnes.get_articles("art-link")
 idnes.create_article_objects(idnes_articles)
 
-aktualne = PortalAktualne("https://zpravy.aktualne.cz/")
+aktualne = PortalAktualne("https://zpravy.aktualne.cz/", "aktualne.cz")
 aktualne_articles = aktualne.get_articles("section-opener", "small-box")
 aktualne.create_article_objects(aktualne_articles)
 
-aktualne_second_page = PortalAktualne("https://zpravy.aktualne.cz/?offset=20/")
+aktualne_second_page = PortalAktualne("https://zpravy.aktualne.cz/?offset=20/", "aktualne.cz")
 aktualne_articles = aktualne.get_articles("section-opener", "small-box")
 aktualne.create_article_objects(aktualne_articles)
 
-denik = PortalDenik("https://www.denik.cz/zpravy/")
+denik = PortalDenik("https://www.denik.cz/zpravy/", "denik.cz")
 denik_articles = denik.get_articles("box-article")
 denik.create_article_objects(denik_articles)
 

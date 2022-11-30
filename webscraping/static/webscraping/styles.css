@@ -22,13 +22,16 @@ header {
     justify-content: center;
 }
 
+header h1 {
+    font-weight: normal;
+}
+
 section {
     padding: 2em 1em;
-    margin: 0 auto;
 }
 
 .container {
-    max-width: 960px;
+    max-width: 720px;
     margin: 0 auto;
 }
 
@@ -60,7 +63,7 @@ input:focus {
     color: white;
     font-weight: bold;
     text-transform: uppercase;
-    background-color: rgb(253, 68, 99);
+    background-color: rgb(255, 85, 114);
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -71,9 +74,9 @@ input:focus {
 
 .article-box {
     display: flex;
-    gap: 2em;
-    width: 300px;
+    gap: 1em;
     align-items: center;
+    max-width: 620px;
 }
 
 .article-box h2 {
@@ -82,9 +85,30 @@ input:focus {
     color: rgb(226, 39, 70);
     font-size: 3em;
     font-weight: bold;
-    width: 1.5em;
+    min-width: 1.7em;
 }
 
 .article-box p {
+    color: rgb(70, 70, 70);
+    padding: 1em;
+    padding-bottom: 0.2em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
 
+.article-box p:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.article-box a {
+    text-decoration: none;
+}
+
+.article-from {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    color: rgb(117, 117, 117);
 }
