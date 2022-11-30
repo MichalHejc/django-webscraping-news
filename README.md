@@ -1,5 +1,5 @@
 # Django news webscraping app
-App for webscraping from Czech news websites. User can filter articles according to the entered keyword.
+App for web scraping from News websites. User can filter articles according to the entered keyword.
 
 At the moment, app scrapes news from Denik.cz, Aktualne.cz, Seznam.cz and Idnes.cz front pages.
 
